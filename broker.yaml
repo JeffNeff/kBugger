@@ -1,0 +1,6 @@
+apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+    annotations:
+        ui.triggermesh.io/sub-kind: DefaultBroker
+    name: default
