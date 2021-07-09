@@ -41,7 +41,7 @@ type Dce struct {
 func main() {
 	d := &Dce{}
 	d.new()
-	i, err := strconv.Atoi("-42")
+	i, err := strconv.Atoi(d.Timeout)
 	if err != nil {
 		log.Fatal("error converting TIMEOUT to a string: ", err)
 	}
