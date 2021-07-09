@@ -26,8 +26,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// Dce runs a CloudEvents receiver.
-type Dce struct {
+type kBugger struct {
 	EventData    string
 	EventSource  string
 	EventSubject string
@@ -39,7 +38,7 @@ type Dce struct {
 }
 
 func main() {
-	d := &Dce{}
+	d := &kBugger{}
 	d.new()
 	i, err := strconv.Atoi(d.Timeout)
 	if err != nil {
@@ -51,29 +50,29 @@ func main() {
 	}
 }
 
-func (dce *Dce) new() {
-	dce.EventID = os.Getenv("EVENT_ID")
-	if dce.EventID == "" {
+func (kBugger *kBugger) new() {
+	kBugger.EventID = os.Getenv("EVENT_ID")
+	if kBugger.EventID == "" {
 		log.Fatal("EVENT_ID must be set")
 	}
-	dce.EventSource = os.Getenv("EVENT_SOURCE")
-	if dce.EventSource == "" {
+	kBugger.EventSource = os.Getenv("EVENT_SOURCE")
+	if kBugger.EventSource == "" {
 		log.Fatal("EVENT_SOURCE must be set")
 	}
-	dce.EventSubject = os.Getenv("EVENT_SUBJECT")
-	if dce.EventSubject == "" {
+	kBugger.EventSubject = os.Getenv("EVENT_SUBJECT")
+	if kBugger.EventSubject == "" {
 		log.Fatal("EVENT_SUBJECT must be set")
 	}
-	dce.EventType = os.Getenv("EVENT_TYPE")
-	if dce.EventType == "" {
+	kBugger.EventType = os.Getenv("EVENT_TYPE")
+	if kBugger.EventType == "" {
 		log.Fatal("EVENT_TYPE must be set")
 	}
-	dce.EventData = os.Getenv("EVENT_DATA")
-	if dce.EventData == "" {
+	kBugger.EventData = os.Getenv("EVENT_DATA")
+	if kBugger.EventData == "" {
 		log.Fatal("EVENT_DATA must be set")
 	}
-	dce.Timeout = os.Getenv("TIMEOUT")
-	if dce.Timeout == "" {
+	kBugger.Timeout = os.Getenv("TIMEOUT")
+	if kBugger.Timeout == "" {
 		log.Fatal("TIMEOUT must be set")
 	}
 	sink := os.Getenv("K_SINK")
@@ -88,29 +87,29 @@ func (dce *Dce) new() {
 		log.Fatal("cloudevents.NewHTTPTransport failed: ", err)
 	}
 
-	dce.ceClient, err = cloudevents.NewClient(t, cloudevents.WithTimeNow())
+	kBugger.ceClient, err = cloudevents.NewClient(t, cloudevents.WithTimeNow())
 	if err != nil {
 		log.Fatal("cloudevents.NewClient failed: ", err)
 	}
 }
 
-func (dce *Dce) sendData() {
+func (kBugger *kBugger) sendData() {
 	log.Info("sending data..")
 
 	eventToSend := cloudevents.NewEvent("1.0")
-	eventToSend.SetType(dce.EventType)
-	eventToSend.SetSource(dce.EventSource)
-	eventToSend.SetSubject(dce.EventSubject)
-	eventToSend.SetID(dce.EventID)
+	eventToSend.SetType(kBugger.EventType)
+	eventToSend.SetSource(kBugger.EventSource)
+	eventToSend.SetSubject(kBugger.EventSubject)
+	eventToSend.SetID(kBugger.EventID)
 	eventToSend.SetDataContentType(cloudevents.ApplicationJSON)
-	b := []byte(dce.EventData)
+	b := []byte(kBugger.EventData)
 	err := eventToSend.SetData(b)
 	if err != nil {
 		log.Error(err)
 		return
 	}
 
-	_, _, err = dce.ceClient.Send(context.Background(), eventToSend)
+	_, _, err = kBugger.ceClient.Send(context.Background(), eventToSend)
 	if err != nil {
 		log.Error(err)
 		return
