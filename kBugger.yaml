@@ -9,13 +9,13 @@ spec:
     - image: gcr.io/fit-stream-305821/kbugger
       env:
         - name: EVENT_ID
-          value: "io.dce.test"
+          value: "io.kbugger.test"
         - name: EVENT_SOURCE
-          value: "dce"
+          value: "kbugger"
         - name: EVENT_SUBJECT
-          value: "dce.subject"
+          value: "kbugger.subject"
         - name: EVENT_TYPE
-          value: "dce.subject"
+          value: "kbugger.subject"
         - name: EVENT_DATA
           value: '{"test":"data"}'
         - name: TIMEOUT
