@@ -45,10 +45,10 @@ Verify the service is working properly by checking the `alldisplay` logs
 kubectl -n test logs alldisplay-00001-deployment-6467c885db-ftkhs user-container
 Context Attributes,
   specversion: 1.0
-  type: dce.subject
-  source: dce
-  subject: dce.subject
-  id: io.dce.test
+  type: kbugger.subject
+  source: kbugger
+  subject: kbugger.subject
+  id: io.kbugger.test
   time: 2021-07-09T19:25:07.214001959Z
   datacontenttype: application/json
 Extensions,
