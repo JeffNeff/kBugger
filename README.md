@@ -1,7 +1,9 @@
 # kBugger
 `kBugger` is a knative service that allows the user to emit dynamic cloudevent types. 
 These events will be emitted on a loop for the duration of the deployments lifecycle
-with the enviorment variable `TIMEOUT` defining the sleep duration between requests.
+with the enviorment variable `TIMEOUT` defining the sleep duration between requests. 
+
+**Note** if `TIMEOUT` is set to 0 the service will emit a single event and then close
 
 ## Usage 
 `kBugger` is basically just a cron job that allows you to specify cloudevent attributes. 

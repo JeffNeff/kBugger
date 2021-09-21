@@ -44,9 +44,13 @@ func main() {
 	if err != nil {
 		log.Fatal("error converting TIMEOUT to a string: ", err)
 	}
-	for {
+	if d.Timeout == "0" {
 		d.sendData()
-		time.Sleep(time.Duration(i) * time.Second)
+	} else {
+		for {
+			d.sendData()
+			time.Sleep(time.Duration(i) * time.Second)
+		}
 	}
 }
 
