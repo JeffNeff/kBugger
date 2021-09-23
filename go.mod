@@ -1,4 +1,4 @@
-module github.com/triggermesh/kBugger
+module github.com/JeffNeff/kBugger
 
 go 1.16
 

@@ -6,7 +6,7 @@ spec:
  template:
   spec:
    containers:
-    - image: ko://github.com/JeffNeff/kBugger/
+    - image: ko://github.com/JeffNeff/kBugger/cmd/kBugger
       env:
         - name: EVENT_ID
           value: "io.kbugger.test"
