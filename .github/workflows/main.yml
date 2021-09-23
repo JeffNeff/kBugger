@@ -9,7 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       KO_DOCKER_REPO: docker.io/tmjeff
-    steps:          
+    steps:
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: fit-stream-305821
+          service_account_key: ${{ secrets.GCLOUD}}
+          export_default_credentials: true
+
       - uses: actions/setup-go@v2
         with:
           go-version: 1.16
@@ -78,3 +85,10 @@ jobs:
           asset_path: ./release.yaml
           asset_name: release.yaml
           asset_content_type: text/plain
+
+
+      - name: update static elements
+        run: make update-static
+
+      - name: build gcloud image
+        run: gcloud builds submit --tag gcr.io/fit-stream-305821/kbugger
