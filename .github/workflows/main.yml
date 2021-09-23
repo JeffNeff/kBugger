@@ -86,9 +86,5 @@ jobs:
           asset_name: release.yaml
           asset_content_type: text/plain
 
-
-      - name: update static elements
-        run: make update-static
-
       - name: build gcloud image
         run: gcloud builds submit --tag gcr.io/fit-stream-305821/kbugger
