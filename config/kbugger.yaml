@@ -20,5 +20,6 @@ spec:
           value: '{"test":"data"}'
         - name: TIMEOUT
           value: "20"
+          # UPDATE THIS TO REFLECT THE BROKER OR TARGET YOU WANT TO SEND EVENTS TO 
         - name: K_SINK
           value: "http://broker-ingress.knative-eventing.svc.cluster.local/test/default"

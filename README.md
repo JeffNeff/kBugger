@@ -79,5 +79,6 @@ export K_SINK=localhost:8080
 
 Run the project
 ```
-go run .
+cd cmd/kBugger
+go run . 
 ```

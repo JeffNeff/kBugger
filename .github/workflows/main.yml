@@ -55,10 +55,6 @@ jobs:
       - name: apply release manifest
         run: kubectl -n demo apply -f release.yaml
 
-      - name: Sleep for 30 seconds
-        run: sleep 60s
-        shell: bash
-
       - name:  kubectl -n demo get ksvc
         run: kubectl -n demo get ksvc
 
