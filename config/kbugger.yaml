@@ -1,0 +1,24 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+ name: kbugger
+spec:
+ template:
+  spec:
+   containers:
+    - image: ko://github.com/JeffNeff/kBugger/
+      env:
+        - name: EVENT_ID
+          value: "io.kbugger.test"
+        - name: EVENT_SOURCE
+          value: "kbugger"
+        - name: EVENT_SUBJECT
+          value: "kbugger.subject"
+        - name: EVENT_TYPE
+          value: "kbugger.subject"
+        - name: EVENT_DATA
+          value: '{"test":"data"}'
+        - name: TIMEOUT
+          value: "20"
+        - name: K_SINK
+          value: "http://broker-ingress.knative-eventing.svc.cluster.local/test/default"
